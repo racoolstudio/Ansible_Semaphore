@@ -1,5 +1,5 @@
 - hosts: websites
-  become: true
+  become: yes
   tasks:
     - name: Update Apt Repo and Installing Apache
       apt:
