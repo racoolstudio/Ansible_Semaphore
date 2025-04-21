@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "About to Create SSH For $username with Public Key : $public_key"
-
+ip a
 # Add the user
 sudo adduser --disabled-password --gecos "" "$username"
 if [ $? -ne 0 ]; then
