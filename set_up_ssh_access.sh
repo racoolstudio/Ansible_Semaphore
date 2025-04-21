@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "About to Create SSH For $username with Public Key : $public_key"
-sudo add $username
+sudo adduser $username
 echo "Adding $username to Sudo group"
 sudo usermod -aG sudo $username
 
