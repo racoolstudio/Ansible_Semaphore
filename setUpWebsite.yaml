@@ -19,8 +19,9 @@
         mode: '0755' 
         
     - name: Run Script For WebSite
-      ansible.builtin.shell: setup.sh
+      ansible.builtin.shell: 
       args:
+        cmd: './setup.sh'
         chdir: ~/
         
 
