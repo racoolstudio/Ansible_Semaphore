@@ -10,6 +10,4 @@
       ansible.builtin.shell:
         cmd: "./set_up_ssh_access.sh {{ username }} '{{ public_key }}'"
         chdir: ~/
-    - name: Echo the environment variable from Variable Group 'racool'
-      debug:
-        msg: "{{ public_key }}"
+ 
