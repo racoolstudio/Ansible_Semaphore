@@ -12,4 +12,4 @@
         chdir: ~/
     - name: Echo the environment variable from Variable Group 'racool'
       debug:
-        msg: "{{ username }}"
+        msg: "{{ public_key }}"
