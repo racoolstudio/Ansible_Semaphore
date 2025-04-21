@@ -5,9 +5,8 @@
       ansible.builtin.copy:
         src: ./set_up_ssh_access.sh
         dest: ~/set_up_ssh_access.sh
-        mode: '0755'  # Ensure the script is executable
-        
+        mode: '0755'  # Ensure the script is executable   
    - name: Run Script For SSH
-      ansible.builtin.shell:
-        cmd: "./set_up_ssh_access.sh {{ username }} '{{ public_key }}'"
-        chdir: ~/
+     ansible.builtin.shell:
+       cmd: "./set_up_ssh_access.sh {{ username }} '{{ public_key }}'"
+       chdir: ~/
