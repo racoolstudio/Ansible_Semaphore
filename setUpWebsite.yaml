@@ -17,6 +17,7 @@
       ansible.builtin.copy:
         src: ./setup.sh
         dest: ~/setup.sh
+        mode: '0755' 
         
     - name: Run Script For WebSite
       ansible.builtin.shell: setup.sh
