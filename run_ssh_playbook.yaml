@@ -1,19 +1,14 @@
 - hosts: webServers
   become: yes
   tasks:
-    - name: Update Apt Repo and Installing Apache
-      apt:
-        name: apache2
-        update_cache: yes
-        force_apt_get: yes
-    # - name: Transfering Script from Repo to Server
-    #   ansible.builtin.copy:
-    #     src: ./set_up_ssh_access.sh
-    #     dest: ~/set_up_ssh_access.sh
-    #     mode: '0755'  # Ensure the script is executable
+    - name: Transfering Script from Repo to Server
+      ansible.builtin.copy:
+        src: ./set_up_ssh_access.sh
+        dest: ~/set_up_ssh_access.sh
+        mode: '0755'  # Ensure the script is executable
         
-    # - name: Run Script For SSH
-    #   ansible.builtin.shell:
-    #     cmd: ./set_up_ssh_access.sh
-    #     chdir: ~/
+    - name: Run Script For SSH
+      ansible.builtin.shell:
+        cmd: ./set_up_ssh_access.sh
+        chdir: ~/
         
