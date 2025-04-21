@@ -1,7 +1,6 @@
 - hosts: webServers
   become: yes
-  vars:
-    ansible_become_password: "{{ sudo_password }}"  # Replace or set the variable appropriately
+  become_password: "{{ sudo_password }}" 
   tasks:
     - name: Transfering Script from Repo to Server
       ansible.builtin.copy:
