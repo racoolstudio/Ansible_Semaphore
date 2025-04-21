@@ -1,5 +1,5 @@
 - hosts: webServers
-  become: true
+  become: yes
   tasks:
     - name: Transfering Script from Repo to Server
       ansible.builtin.copy:
