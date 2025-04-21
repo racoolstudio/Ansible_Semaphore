@@ -1,35 +1,19 @@
 #!/bin/bash
-echo "About to Create SSH For $username with Public Key : $public_key"
-ip a
-# Add the user
-sudo adduser --disabled-password --gecos "" "$username"
-if [ $? -ne 0 ]; then
-  echo "Error: Failed to create user '$username'."
+
+USERNAME=$1
+PUBKEY=$2
+
+# Validate input
+if [ -z "$USERNAME" ] || [ -z "$PUBKEY" ]; then
+  echo "Error: Username or Public Key is missing."
   exit 1
 fi
 
-# Add the user to the sudo group
-echo "Adding '$username' to the sudo group..."
-sudo usermod -aG sudo "$username"
-if [ $? -ne 0 ]; then
-  echo "Error: Failed to add '$username' to the sudo group."
-  exit 1
-fi
-
-# Set up SSH access
-echo "Setting up SSH access for '$username'..."
-SSH_DIR="/home/$username/.ssh"
-AUTHORIZED_KEYS="$SSH_DIR/authorized_keys"
-
-sudo mkdir -p "$SSH_DIR"
-sudo chmod 700 "$SSH_DIR"
-
-echo "$public_key" | sudo tee "$AUTHORIZED_KEYS" > /dev/null
-sudo chmod 600 "$AUTHORIZED_KEYS"
-sudo chown -R "$username:$username" "$SSH_DIR"
-
-if [ $? -eq 0 ]; then
-  echo "SSH access has been successfully set up for '$username'."
-else
-  echo "Error: Failed to set up SSH access for '$username'."
-  exit 1
+# Create the user and set up SSH access
+useradd -m -s /bin/bash "$USERNAME"
+mkdir -p /home/"$USERNAME"/.ssh
+echo "$PUBKEY" > /home/"$USERNAME"/.ssh/authorized_keys
+chown -R "$USERNAME":"$USERNAME" /home/"$USERNAME"/.ssh
+chmod 600 /home/"$USERNAME"/.ssh/authorized_keys
+chmod 700 /home/"$USERNAME"/.ssh
+echo "SSH access set up for $USERNAME."
