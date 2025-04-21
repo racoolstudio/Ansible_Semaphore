@@ -1,4 +1,4 @@
-- hosts: websites
+- hosts: webServers
   become: yes
   tasks:
     - name: Update Apt Repo and Installing Apache
