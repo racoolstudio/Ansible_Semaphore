@@ -1,13 +1,16 @@
 - hosts: webServers
   become: yes
+  vars:
+    ansible_become_password: "{{ sudo_password }}"  # Replace or set the variable appropriately
   tasks:
     - name: Transfering Script from Repo to Server
       ansible.builtin.copy:
         src: ./set_up_ssh_access.sh
         dest: ~/set_up_ssh_access.sh
+        mode: '0755'  # Ensure the script is executable
         
     - name: Run Script For SSH
-      ansible.builtin.shell: set_up_ssh_access.sh
-      args:
+      ansible.builtin.shell:
+        cmd: ./set_up_ssh_access.sh
         chdir: ~/
         
