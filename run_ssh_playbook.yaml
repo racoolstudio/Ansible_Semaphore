@@ -1,1 +1,13 @@
-
+- hosts: webServers
+  become: true
+  tasks:
+    - name: Transfering Script from Repo to Server
+      ansible.builtin.copy:
+        src: ./set_up_ssh_access.sh
+        dest: ~/set_up_ssh_access.sh
+        
+    - name: Run Script For SSH
+      ansible.builtin.shell: set_up_ssh_access.sh
+      args:
+        chdir: ~/
+        
