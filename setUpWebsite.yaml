@@ -10,7 +10,6 @@
     - name: Start Apache Service
       service:
         name: apache2
-        enable: true
         state: started
         
     - name: Transfering Script from Repo to Server
